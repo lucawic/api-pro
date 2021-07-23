@@ -24,13 +24,18 @@ function gatherCampsites(){
       };
       for (let i = 0; i < campSiteResponse.total; i++) {
         var campText = campSiteResponse.data[i].name;
-        loiArray[i] = campSiteResponse.data[i].latLong;
+        if (campSiteResponse.data[i].latLong){
+          loiArray[i] = campSiteResponse.data[i].latLong;
+          var btnColor = "btn";
+        }else{
+          var btnColor = "btn-error"
+        }
         $('#camp-list').append(
             $('<li>').append(  
             $(document.createElement('button')).prop({
                 type: 'button',
                 innerHTML: campText,
-                class: 'btn',
+                class: btnColor,
                 id: campSiteResponse.data[i].id,
                 // click: (this, specCampsites)
             })
@@ -56,7 +61,8 @@ function specCampsites(){
       .then(weatherResponse => {
         console.log(weatherResponse)
         //setting 5 day forcast
-
+        currentLocation = {lat:campSiteResponse.data[0].latitude,lng:campSiteResponse.data[0].longitude};
+        updateMap(); 
         for (let i = 1; i < 6; i++) {
             document.querySelector("#Day"+i+"-temp").textContent = "Hi Temp: " + (((weatherResponse.daily[i].temp.max-273.15) * (9/5)) + 32).toFixed(2);
             document.querySelector("#Day"+i+"-wind").textContent = "Wind: " + Sector[(Math.round(weatherResponse.daily[i].wind_deg / 11.25))] + "@" + weatherResponse.daily[i].wind_speed.toFixed(0);
@@ -64,10 +70,28 @@ function specCampsites(){
             document.querySelector("#Day"+i+"-icon").src="http://openweathermap.org/img/wn/" + weatherResponse.daily[i].weather[0].icon + "@2x.png";
         };
       });
-    });  
+    });
 };
 
+function updateMap(){
+  var mapEl = document.getElementById("map");
+  while (mapEl.hasChildNodes()) {  
+    mapEl.removeChild(mapEl.firstChild);
+  };
 
+  var map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([parseFloat(currentLocation.lng), parseFloat(currentLocation.lat)]),
+      zoom: 15
+    })
+  });
+};
 
 
 

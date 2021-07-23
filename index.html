@@ -11,6 +11,8 @@
   <body>
     <h1>Input state code</h1>
     Search term: <input type="text" id="searchTerm" value="" />
+    <h1>Target Date MM/DD/YYYY</h1>
+    Search term: <input type="text" id="searchDate" value="" />
     <button onclick="gatherCampsites()">Search!</button>
     <div id="response-container">
       <ul id="camp-list">
@@ -92,6 +94,16 @@
           </div>
         </div>
     </div>
+
+    <div id="map" class="map"></div>
+    <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
