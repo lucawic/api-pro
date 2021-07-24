@@ -20,15 +20,12 @@
   </head>
 
   <body>
-    <!-- Containers -->
-    <!-- User Input Container -->
-    <!-- Campsite Info Container -->
-    <!-- Map Container -->
     <div class="container">
-      <nav>
-        <div class="nav-wrapper">
+      <!-- NAV START -->
+      <nav class="green darken-4">
+        <div class="nav-wrapper container">
           <a href="#" class="brand-logo"
-            ><i class="large material-icons">location_on</i>Logo</a
+            ><i class="large material-icons">location_on</i>App Name</a
           >
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#">About</a></li>
@@ -36,23 +33,117 @@
           </ul>
         </div>
       </nav>
-      <div class="row col s12">
-        <div class="weather-container blue lighten-2">
-          <h1>Weather Container</h1>
-        </div>
-      </div>
-      <div class="container row">
-        <div class="user-input">
-          <div class="col l4  blue"><h1>User Input Container</h1></div>
-        </div>
-        <div class="campsite-info">
-          <div class="col l4  red"><h1>Campsite Info Container</h1></div>
-        </div>
+      <!-- NAV END -->
 
-        <div class="map-container">
-          <div class="col l4 grey"><h1>Map Container</h1></div>
+      <!-- WEATHER START -->
+      <div class="row light-blue lighten-1 card-panel">
+        <div class="col l12">
+          <div class="yellow-text accent-2">
+            <span class="card-title">Expected forecast</span>
+            <p>Insert weather information here.</p>
+          </div>
         </div>
       </div>
+      <!-- WEATHER END -->
+
+      <!-- I'M USING ONE ROW TO HOLD 3 COLUMNS HERE -->
+      <div class="container row col s12">
+        <!-- USER INPUT START -->
+        <div class="col l4">
+          <div class="card large">
+            <div class="card-title">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" required />
+                  <label class="label-icon" for="search"
+                    ><i class="material-icons">search</i></label
+                  >
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+              <div class="left">
+                <a href="#" class="waves-effect waves-light btn-small"
+                  >Search</a
+                >
+              </div>
+              <div class="right">
+                <a href="#" class="waves-effect waves-light btn-small"
+                  >Favorites</a
+                >
+              </div>
+            </div>
+            <div class="card-content">
+              <ul class="center">
+                <li>Tijeras, NM</li>
+                <li>Tijeras, NM</li>
+                <li>Tijeras, NM</li>
+                <li>Tijeras, NM</li>
+                <li>Tijeras, NM</li>
+              </ul>
+            </div>
+            <div class="center">
+              <a href="#" class="waves-effect waves-light btn-large"
+                ><i class="material-icons">delete</i> Clear search</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- USER INPUT END -->
+
+        <!-- CAMPSITE START -->
+        <div class="col l4">
+          <div class="card large">
+            <div class="card-image">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque,
+                necessitatibus deserunt. Molestiae, veniam quos nisi, et
+                aspernatur quis exercitationem ad eligendi ullam odit quas amet
+                eos, laborum dignissimos odio aut nobis!
+              </p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+        <!-- CAMPSITE END -->
+
+        <!-- MAP START -->
+        <div class="col l4">
+          <div class="card large">
+            <div class="card-image">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque,
+                necessitatibus deserunt. Molestiae, veniam quos nisi, et
+                aspernatur quis exercitationem ad eligendi ullam odit quas amet
+                eos, laborum dignissimos odio aut nobis!
+              </p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+        <!-- MAP END -->
+      </div>
+
+      <!-- FOOTER START -->
+      <footer class="page-footer">
+        <div class="center valign-wrapper">
+        <div class="row">
+          <div class="l12">
+            <h6>App Name &copy;2021</h6>
+          </div>
+        </div>
+      
+      </div>
+      </footer>
     </div>
 
     <!-- Compiled and minified JavaScript -->
