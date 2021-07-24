@@ -3,18 +3,29 @@ ul {
 }
 
 .btn {
-    border-radius: 15px;
-    background-color: #06AED5;
-    color: white;
-  }
+  border-radius: 15px;
+  background-color: #06AED5;
+  color: white;
+}
   
 .btn i:hover {
-    font-size: 20px;
-    transition: all .3s ease-in-out;
-  }
+  font-size: 20px;
+  transition: all .3s ease-in-out;
+}
   
- .btn-error {
-    border-radius: 15px;
-    background-color: red;
-    color: white;
-  }
+.btn-error {
+  border-radius: 15px;
+  background-color: red;
+  color: white;
+}
+
+.btn-next {
+  border-radius: 15px;
+  background-color: yellow;
+  color: black;
+}
+.btn-prev {
+  border-radius: 15px;
+  background-color: yellow;
+  color: black;
+}
