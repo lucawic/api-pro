@@ -7,13 +7,14 @@ let loiArray = [];
 let currentLocation = {lat:"",lng:""};
 let npsApiKey = "71YJlvXLD5CwfW1xEAbx30SgczpxdaZPp5HVB1eL";
 let openWeatherApiKey = "c6372f1324c78c2e38ccaa1ebef5b15c";
+let searchPage = 0;
+let searchLimit = 50;
 // Open Layerts appears keyless 
 
 
 function gatherCampsites(){
     var searchStr = (document.querySelector("#searchTerm").value).toUpperCase();
- 
-    var apiUrl = "https://developer.nps.gov/api/v1/campgrounds?stateCode=" + searchStr + "&api_key=" + npsApiKey;
+    var apiUrl = "https://developer.nps.gov/api/v1/campgrounds?stateCode=" + searchStr + "&api_key=" + npsApiKey + "&start=" + searchPage + "&limit=" + searchLimit;
     fetch(apiUrl)
     .then(campSiteResponse => campSiteResponse.json())
     .then(campSiteResponse =>{
@@ -22,7 +23,13 @@ function gatherCampsites(){
       while (campsEl.hasChildNodes()) {  
         campsEl.removeChild(campsEl.firstChild);
       };
-      for (let i = 0; i < campSiteResponse.total; i++) {
+
+      if (campSiteResponse.total < (searchPage + searchLimit)){
+        var buttonLimit = campSiteResponse.total - searchLimit
+      }else{
+        var buttonLimit = searchLimit 
+      }
+      for (let i = 0; i < buttonLimit; i++) {
         var campText = campSiteResponse.data[i].name;
         if (campSiteResponse.data[i].latLong){
           loiArray[i] = campSiteResponse.data[i].latLong;
@@ -43,10 +50,51 @@ function gatherCampsites(){
         );
         var btn = document.getElementById(campSiteResponse.data[i].id);
         btn.addEventListener("click", specCampsites);
-        };
+      };
+      if (campSiteResponse.total > (searchPage + searchLimit)){
+        btnColor = "btn-next";
+        $('#camp-list').append(
+          $('<li>').append(  
+          $(document.createElement('button')).prop({
+              type: 'button',
+              innerHTML: "NEXT PAGE",
+              class: btnColor,
+              id: "NEXT-PAGE",
+              // click: (this, specCampsites)
+            })
+          )
+        )
+        var btn = document.getElementById("NEXT-PAGE");
+        btn.addEventListener("click", nextPage);
+      };
+      if (searchPage >= searchLimit){
+        btnColor = "btn-prev";
+        $('#camp-list').append(
+          $('<li>').append(  
+          $(document.createElement('button')).prop({
+              type: 'button',
+              innerHTML: "PREV PAGE",
+              class: btnColor,
+              id: "PREV-PAGE",
+              // click: (this, specCampsites)
+            })
+          )
+        )
+        var btn = document.getElementById("PREV-PAGE");
+        btn.addEventListener("click", prevPage);
+      };
     })
 };
 
+function nextPage(){
+  searchPage = searchPage + searchLimit;
+  gatherCampsites();
+};
+
+function prevPage(){
+  searchPage = searchPage - searchLimit;
+  gatherCampsites();
+};
 
 function specCampsites(){
     searchStr = this.id;
@@ -93,19 +141,3 @@ function updateMap(){
   });
 };
 
-
-
-
-        //Error catch and warning
-        // .catch(function() {
-        //   searchStr = '';
-        //   document.querySelector("#searchTerm").value = "";
-        //   searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
-        //   let popped = searchedCities.pop();
-        //   localStorage.setItem("searchedCities" , JSON.stringify(searchedCities));
-        //   console.log("error");
-        //   document.querySelector("#submit-search").textContent = "City Not Found";
-        //   document.querySelector("#submit-search").style.backgroundColor = "red";
-        //   loadCities();
-        //   window.setTimeout(resetSubmitButton, 3000); 
-        // });
