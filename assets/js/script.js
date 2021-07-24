@@ -121,6 +121,7 @@ function specCampsites(){
     });
 };
 
+
 function updateMap(){
   var mapEl = document.getElementById("map");
   while (mapEl.hasChildNodes()) {  
