@@ -20,9 +20,9 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container l12">
       <!-- NAV START -->
-      <nav class="green darken-4">
+      <nav class="green darken-4 l12">
         <div class="nav-wrapper container">
           <a href="#" class="brand-logo"
             ><i class="large material-icons">location_on</i>App Name</a
@@ -67,16 +67,20 @@
                   <i class="material-icons">close</i>
                 </div>
               </form>
-              <div class="left">
-                <a href="#" class="waves-effect waves-light btn-small"
-                  >Search</a
-                >
+              <!-- USER INPUT BUTTONS START -->
+              <div class="center">
+                <div class="left">
+                  <a href="#" class="waves-effect waves-light btn-small"
+                    >Search</a
+                  >
+                </div>
+                <div class="right">
+                  <a href="#" class="waves-effect waves-light btn-small"
+                    >Favorites</a
+                  >
+                </div>
               </div>
-              <div class="right">
-                <a href="#" class="waves-effect waves-light btn-small"
-                  >Favorites</a
-                >
-              </div>
+              <!-- USER INPUT BUTTONS END -->
             </div>
             <div class="card-content">
               <ul class="center">
@@ -96,7 +100,7 @@
         </div>
         <!-- USER INPUT END -->
 
-        <!-- CAMPSITE START -->
+        <!-- CAMPSITE INFO START -->
         <div class="col l4">
           <div class="card medium">
             <div class="card-title center">Camp Info:</div>
@@ -110,11 +114,13 @@
             </div>
           </div>
         </div>
-        <!-- CAMPSITE END -->
+        <!-- CAMPSITE INFO END -->
 
         <!-- MAP START -->
         <div class="col l4">
-          <div class="card medium"></div>
+          <div class="card card-custom">
+            <div class="card-title center">Map</div>
+          </div>
         </div>
         <!-- MAP END -->
       </div>
