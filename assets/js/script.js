@@ -96,6 +96,12 @@ function prevPage(){
   gatherCampsites();
 };
 
+function resetSearchPage(){
+  searchPage = 0;
+  searchLimit = 50;
+};
+
+
 function specCampsites(){
     searchStr = this.id;
     var apiUrl = "https://developer.nps.gov/api/v1/campgrounds?id=" + searchStr + "&api_key=" + npsApiKey;
