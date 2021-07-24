@@ -24,12 +24,12 @@ function gatherCampsites(){
         campsEl.removeChild(campsEl.firstChild);
       };
 
-      if (campSiteResponse.total < (searchPage + searchLimit)){
-        var buttonLimit = campSiteResponse.total - searchLimit
-      }else{
-        var buttonLimit = searchLimit 
-      }
-      for (let i = 0; i < buttonLimit; i++) {
+      // if (campSiteResponse.total < (searchPage + searchLimit)){
+      //   var buttonLimit = (searchPage + searchLimit) - campSiteResponse.total
+      // }else{
+      //   var buttonLimit = searchLimit 
+      // }
+      for (let i = 0; i < campSiteResponse.data.length; i++) {
         var campText = campSiteResponse.data[i].name;
         if (campSiteResponse.data[i].latLong){
           loiArray[i] = campSiteResponse.data[i].latLong;
@@ -95,6 +95,12 @@ function prevPage(){
   searchPage = searchPage - searchLimit;
   gatherCampsites();
 };
+
+function resetSearchPage(){
+  searchPage = 0;
+  searchLimit = 50;
+};
+
 
 function specCampsites(){
     searchStr = this.id;
