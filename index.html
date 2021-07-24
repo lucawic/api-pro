@@ -10,7 +10,7 @@
 
   <body>
     <h1>Input state code</h1>
-    Search term: <input type="text" id="searchTerm" value="" />
+    Search term: <input type="text" id="searchTerm" value="" onclick="resetSearchPage()"/>
     <h1>Target Date MM/DD/YYYY</h1>
     Search term: <input type="text" id="searchDate" value="" />
     <button onclick="gatherCampsites()">Search!</button>
@@ -99,7 +99,6 @@
       .map {
         height: 400px;
         width: 100%;
-        padding: 25px 0px 25px 0px;
       }
     </style>
 
