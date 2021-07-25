@@ -13,7 +13,7 @@ body {
 
 #clear-search-btn {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 50%;
   transform: translate(-50%, 0%);
 }
