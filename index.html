@@ -22,15 +22,9 @@
   <body>
     <div class="container l12">
       <!-- NAV START -->
-      <nav class="green darken-4 l12">
+      <nav class="center green darken-4 l12">
         <div class="nav-wrapper container">
-          <a href="#" class="brand-logo"
-            ><i class="large material-icons">location_on</i>App Name</a
-          >
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
+          <a href="/" class="brand-logo">App Name</a>
         </div>
       </nav>
       <!-- NAV END -->
@@ -47,17 +41,16 @@
       <!-- WEATHER END -->
 
       <!-- I'M USING ONE ROW TO HOLD 3 COLUMNS HERE -->
-      <div class="container row col s12">
+      <div class="container row l12">
         <!-- USER INPUT START -->
         <div class="col l4">
-          <div class="card medium">
+          <div id="user-input-container" class="card medium">
             <div class="card-title">
               <form>
                 <div class="input-field">
                   <input
                     id="search"
                     type="search"
-                    value="search"
                     class="center light-blue lighten-5"
                     required
                   />
@@ -68,7 +61,7 @@
                 </div>
               </form>
               <!-- USER INPUT BUTTONS START -->
-              <div class="center">
+              <div class="container">
                 <div class="left">
                   <a href="#" class="waves-effect waves-light btn-small"
                     >Search</a
@@ -84,14 +77,10 @@
             </div>
             <div class="card-content">
               <ul class="center">
-                <li>Tijeras, NM</li>
-                <li>Tijeras, NM</li>
-                <li>Tijeras, NM</li>
-                <li>Tijeras, NM</li>
-                <li>Tijeras, NM</li>
+                <li>Phoenix, Az</li>
               </ul>
             </div>
-            <div class="center">
+            <div id="clear-search-btn" class="center">
               <a href="#" class="waves-effect waves-light btn-small"
                 ><i class="material-icons">delete</i> Clear search</a
               >
@@ -119,7 +108,7 @@
         <!-- MAP START -->
         <div class="col l4">
           <div class="card card-custom">
-            <div class="card-title center">Map</div>
+            <div id="map"></div>
           </div>
         </div>
         <!-- MAP END -->
@@ -139,7 +128,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <body>
+    <!-- <body>
     <h1>Input state code</h1>
     Search term: <input type="text" id="searchTerm" value="" onclick="resetSearchPage()"/>
     <h1>Target Date MM/DD/YYYY</h1>
@@ -151,7 +140,7 @@
     </div>
     <div id="container">
     </div> -->
-  
+
     <!-- <H1>5 DAY FORECAST</H1>  
     <div id=forcast-container>
         
@@ -232,11 +221,10 @@
         height: 400px;
         width: 100%;
       }
-    </style>
-    KEEP SCRIPTS -->
+    </style> -->
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.6.1/build/ol.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
-</html> 
+</html>
