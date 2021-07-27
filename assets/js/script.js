@@ -98,7 +98,8 @@ function gatherCampsites() {
             $(document.createElement("button")).prop({
               type: "button",
               innerHTML: "NEXT PAGE",
-              class: btnColor,
+              // class: btnColor,
+              class: btnColor + " right",
               id: "NEXT-PAGE",
               // width: 100 %
               // click: (this, specCampsites)
@@ -115,6 +116,7 @@ function gatherCampsites() {
             $(document.createElement("button")).prop({
               type: "button",
               innerHTML: "PREV PAGE",
+              // class: btnColor,
               class: btnColor,
               id: "PREV-PAGE",
               // click: (this, specCampsites)

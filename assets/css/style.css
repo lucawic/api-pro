@@ -68,6 +68,8 @@ p {
   color: black; */
   background-color: #1b5e20;
   color: #fff;
+  margin-left: 5px;
+  padding: 7px 15px;
 }
 
 .btn-prev {
@@ -76,6 +78,7 @@ p {
   color: black; */
   background-color: #1b5e20;
   color: #fff;
+  padding: 7px 15px;
 }
 
 body {
