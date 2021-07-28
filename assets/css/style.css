@@ -77,13 +77,47 @@ transform: translate(-50%, 0%);
 
 #favorite-btn {
 position: relative;
-bottom: 53px;
+bottom: 75px;
 left: 50%;
 transform: translate(-50%, 0%);
 }
       
 [id^="swipe-"] {
 overflow: scroll;
+}
+
+/* #remove-btn {
+  position: relative;
+  bottom: 65px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  }
+        
+  [id^="swipe-"] {
+  overflow: scroll;
+} */
+
+.modal-container {
+  position: fixed;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  top:0;
+  left:0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,.5);
+  pointer-events:none;
+  opacity:0;
+}
+
+#modal {
+  background-color:white;
+}
+.show {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .map{
