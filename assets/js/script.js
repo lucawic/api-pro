@@ -8,8 +8,10 @@ let currentLocation = {lat:"",lng:""};
 let npsApiKey = "71YJlvXLD5CwfW1xEAbx30SgczpxdaZPp5HVB1eL";
 let openWeatherApiKey = "c6372f1324c78c2e38ccaa1ebef5b15c";
 let searchPage = 0;
-let searchLimit = 50;
+let searchLimit = 10;
 // Open Layerts appears keyless 
+// var el = document.querySelector('.tabs');
+// var instance = M.Tabs.init(el, {swipeable:true});
 
 
 function gatherCampsites(){
@@ -23,17 +25,11 @@ function gatherCampsites(){
       while (campsEl.hasChildNodes()) {  
         campsEl.removeChild(campsEl.firstChild);
       };
-
-      // if (campSiteResponse.total < (searchPage + searchLimit)){
-      //   var buttonLimit = (searchPage + searchLimit) - campSiteResponse.total
-      // }else{
-      //   var buttonLimit = searchLimit 
-      // }
       for (let i = 0; i < campSiteResponse.data.length; i++) {
         var campText = campSiteResponse.data[i].name;
         if (campSiteResponse.data[i].latLong){
           loiArray[i] = campSiteResponse.data[i].latLong;
-          var btnColor = "btn";
+          var btnColor = "waves-effect waves-light btn-small";
         }else{
           var btnColor = "btn-error"
         }
@@ -43,8 +39,8 @@ function gatherCampsites(){
                 type: 'button',
                 innerHTML: campText,
                 class: btnColor,
+                style: "width: 210px",
                 id: campSiteResponse.data[i].id,
-                // click: (this, specCampsites)
             })
             )      
         );
@@ -60,6 +56,7 @@ function gatherCampsites(){
               innerHTML: "NEXT PAGE",
               class: btnColor,
               id: "NEXT-PAGE",
+              style: "width: 210px"
               // click: (this, specCampsites)
             })
           )
@@ -76,6 +73,7 @@ function gatherCampsites(){
               innerHTML: "PREV PAGE",
               class: btnColor,
               id: "PREV-PAGE",
+              style: "width: 210px"
               // click: (this, specCampsites)
             })
           )
@@ -84,6 +82,8 @@ function gatherCampsites(){
         btn.addEventListener("click", prevPage);
       };
     })
+    var btn = document.getElementById("searchTerm");
+    btn.addEventListener("click", resetSearchPage);
 };
 
 function nextPage(){
@@ -98,41 +98,170 @@ function prevPage(){
 
 function resetSearchPage(){
   searchPage = 0;
-  searchLimit = 50;
+  searchLimit = 10;
 };
 
+function clearSearchPage(){
+  var campsEl = document.getElementById("camp-list");
+  while (campsEl.hasChildNodes()) {  
+    campsEl.removeChild(campsEl.firstChild);
+  };
+  var btn = document.getElementById("searchTerm");
+  btn.value = "";
+};
 
 function specCampsites(){
     searchStr = this.id;
+    // var infoEl = document.querySelectorAll(".camp-info");
+    // while (infoEl.hasChildNodes){
+    //   infoEl.removeChild(infoEl.firstChild);
+    // };
+    $('#swipe-1').html('');
+    $('#swipe-2').html('');
+    $('#swipe-3').html('');
+    $('#swipe-4').html('');
+    var txtHeight = document.getElementById("swipe-1");
     var apiUrl = "https://developer.nps.gov/api/v1/campgrounds?id=" + searchStr + "&api_key=" + npsApiKey;
     fetch(apiUrl)
     .then(campSiteResponse => campSiteResponse.json())
     .then(campSiteResponse =>{
       console.log(campSiteResponse)
+
+      if (campSiteResponse.data[0].name){
+        $('#swipe-1').append(
+          $('<p>').text(  
+            "Name: " + campSiteResponse.data[0].name
+          )      
+        );    
+      }
+      if ((campSiteResponse.data[0].fees[0])){
+        $('#swipe-2').append(
+          $('<p>').text(  
+            "Fees: " + campSiteResponse.data[0].fees[0].cost + " " + campSiteResponse.data[0].fees[0].description
+          )      
+        );    
+      }else{
+        $('#swipe-2').append(
+          $('<p>').text(  
+            "Fees: " + "No Available Data"
+          )      
+        );    
+      }
+      if ((campSiteResponse.data[0].description)){
+        $('#swipe-1').append(
+          $('<p>').text(  
+            "Description: " + campSiteResponse.data[0].description
+          )      
+        );    
+      }else{
+        $('#swipe-2').append(
+          $('<p>').text(  
+            "Description: " + "No Available Data"
+          )      
+        );    
+      }
+      if ((campSiteResponse.data[0].directionsOverview)){
+        $('#swipe-3').append(
+          $('<p>').text(  
+            "Directions: " + campSiteResponse.data[0].directionsOverview
+          )      
+        );    
+      }else{
+        $('#swipe-2').append(
+          $('<p>').text(  
+            "Directions: " + "No Available Data"
+          )      
+        );    
+      }
+      if ((campSiteResponse.data[0].reservationInfo)){
+        $('#swipe-2').append(
+          $('<p>').text(  
+            "Reservation Info: " + campSiteResponse.data[0].reservationInfo
+          )      
+        );    
+      }else{
+        $('#swipe-2').append(
+          $('<p>').text(  
+            "Reservation Info: " + "No Available Data"
+          )      
+        );    
+      }      
+      if ((campSiteResponse.data[0].reservationUrl)){
+        $('#swipe-4').append(
+          $('<p>').text(  
+            "Reservation URL: "
+          )      
+        );    
+      }      
+      if ((campSiteResponse.data[0].reservationUrl)){
+        $('#swipe-4').append(
+          campSiteResponse.data[0].reservationUrl.link(campSiteResponse.data[0].reservationUrl)
+        );    
+      }      
+      if ((campSiteResponse.data[0].regulationsurl)){
+        $('#swipe-4').append(
+          $('<p>').text(  
+            "Regulations URL: "
+          )      
+        );    
+      }      
+      if ((campSiteResponse.data[0].regulationsurl)){
+        $('#swipe-4').append(
+            campSiteResponse.data[0].regulationsurl.link(campSiteResponse.data[0].regulationsurl)
+        );    
+      }      
+      if ((campSiteResponse.data[0].url)){
+        $('#swipe-4').append(
+          $('<p>').text(  
+            "URL: "
+          )      
+        );    
+      }      
+      if ((campSiteResponse.data[0].url)){
+        $('#swipe-4').append(
+            campSiteResponse.data[0].url.link(campSiteResponse.data[0].url)
+        );    
+      }      
+      currentLocation = {lat:campSiteResponse.data[0].latitude,lng:campSiteResponse.data[0].longitude};
+      if (campSiteResponse.data[0].latLong){
       var api2Url = "https://api.openweathermap.org/data/2.5/onecall?lat="+campSiteResponse.data[0].latitude+"&lon="+campSiteResponse.data[0].longitude+"&exclude=minutely,hourly&appid=" +  openWeatherApiKey;
       fetch(api2Url)
       .then(weatherResponse => weatherResponse.json())
       .then(weatherResponse => {
-        console.log(weatherResponse)
+        // console.log(weatherResponse)
         //setting 5 day forcast
-        currentLocation = {lat:campSiteResponse.data[0].latitude,lng:campSiteResponse.data[0].longitude};
         updateMap(); 
-        for (let i = 1; i < 6; i++) {
-            document.querySelector("#Day"+i+"-temp").textContent = "Hi Temp: " + (((weatherResponse.daily[i].temp.max-273.15) * (9/5)) + 32).toFixed(2);
-            document.querySelector("#Day"+i+"-wind").textContent = "Wind: " + Sector[(Math.round(weatherResponse.daily[i].wind_deg / 11.25))] + "@" + weatherResponse.daily[i].wind_speed.toFixed(0);
-            document.querySelector("#Day"+i+"-hum").textContent = "Humidity: " + weatherResponse.daily[i].humidity;
-            document.querySelector("#Day"+i+"-icon").src="http://openweathermap.org/img/wn/" + weatherResponse.daily[i].weather[0].icon + "@2x.png";
+        for (let i = 1; i < 7; i++) {
+          document.querySelector("#Day"+i).textContent = (moment().add(i, 'd')).format("L");
+          document.querySelector("#Day"+i+"-temp").textContent = "Hi Temp: " + (((weatherResponse.daily[i].temp.max-273.15) * (9/5)) + 32).toFixed(2);
+          document.querySelector("#Day"+i+"-wind").textContent = "Wind: " + Sector[(Math.round(weatherResponse.daily[i].wind_deg / 11.25))] + "@" + weatherResponse.daily[i].wind_speed.toFixed(0);
+          document.querySelector("#Day"+i+"-hum").textContent = "Humidity: " + weatherResponse.daily[i].humidity;
+          document.querySelector("#Day"+i+"-icon").src="http://openweathermap.org/img/wn/" + weatherResponse.daily[i].weather[0].icon + "@2x.png";
         };
       });
+    }else{
+      updateMap(); 
+      for (let i = 1; i < 7; i++) {
+        document.querySelector("#Day"+i).textContent = (moment().add(i, 'd')).format("L");
+        document.querySelector("#Day"+i+"-temp").textContent = "Hi Temp: " + "NDA";
+        document.querySelector("#Day"+i+"-wind").textContent = "Wind: " + "NDA";
+        document.querySelector("#Day"+i+"-hum").textContent = "Humidity: " + "NDA";
+        document.querySelector("#Day"+i+"-icon").src="";
+      };
+    }
+
+
     });
 };
+
+
 
 function updateMap(){
   var mapEl = document.getElementById("map");
   while (mapEl.hasChildNodes()) {  
     mapEl.removeChild(mapEl.firstChild);
   };
-
+  if (parseFloat(currentLocation.lng)){
   var map = new ol.Map({
     target: 'map',
     layers: [
@@ -141,9 +270,12 @@ function updateMap(){
       })
     ],
     view: new ol.View({
-      center: ol.proj.fromLonLat([parseFloat(currentLocation.lng), parseFloat(currentLocation.lat)]),
+      center: ol.proj.fromLonLat([currentLocation.lng, currentLocation.lat]),
       zoom: 15
     })
   });
+  }else{
+    mapEl.innerText = "No Data Available"
+  }
 };
 

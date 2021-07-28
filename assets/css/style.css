@@ -1,31 +1,89 @@
 ul {
-  list-style: none; 
+vertical-align: top;
+padding-left: 20px;
+padding-right: 20px;
+float: left;
 }
 
-.btn {
-  border-radius: 15px;
-  background-color: #06AED5;
-  color: white;
+li {
+list-style: none;
 }
-  
-.btn i:hover {
-  font-size: 20px;
-  transition: all .3s ease-in-out;
+
+h4 {
+font-size: medium;
+display:inline;
+float: center;
 }
-  
+
+p {
+border-bottom-style: solid;
+border-width: thin;
+}
+
+body {
+background-color: darkslategray;
+}
+
+footer {
+position: static;
+bottom: 0;
+width: 100%;
+} 
+
+#camp-list{
+padding-top:20px;
+float:none;
+padding-right: 0px;
+padding-left: 0px;
+}
+
+.camp-info{
+padding: 10px;
+font-size: 12px;
+}
+
 .btn-error {
-  border-radius: 15px;
-  background-color: red;
-  color: white;
+background-color: red;
+color: white;
 }
 
 .btn-next {
-  border-radius: 15px;
-  background-color: yellow;
-  color: black;
+/* border-radius: 15px; */
+background-color: yellow;
+color: black;
 }
+
 .btn-prev {
-  border-radius: 15px;
-  background-color: yellow;
-  color: black;
+/* border-radius: 15px; */
+background-color: yellow;
+color: black;
 }
+
+.card-custom {
+min-height: 550px;
+min-width:550px;
+}
+
+#user-input-container {
+margin-top: -6px;
+}
+
+#clear-search-btn {
+position: absolute;
+bottom: 5px;
+left: 50%;
+transform: translate(-50%, 0%);
+}
+
+#favorite-btn {
+position: relative;
+bottom: 53px;
+left: 50%;
+transform: translate(-50%, 0%);
+}
+      
+[id^="swipe-"] {
+overflow: scroll;
+}
+
+
