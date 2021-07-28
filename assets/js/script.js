@@ -189,6 +189,7 @@ function specCampsites(){
     campID = campSiteResponse.data[0].id;
     //populate all the tabs with data use JQuery
     if (campSiteResponse.data[0].name){
+      campSiteName = campSiteResponse.data[0].name
       $('#swipe-1').append(
         $('<p>').text(  
           "Name: " + campSiteResponse.data[0].name
