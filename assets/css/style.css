@@ -1,18 +1,61 @@
 ul {
-  list-style: none; 
+  /* display: inline-block; */
+  vertical-align: top;
+  padding-left: 20px;
+  padding-right: 20px;
+  float: left;
 }
 
-.btn {
-  border-radius: 15px;
-  background-color: #06AED5;
-  color: white;
+li {
+  list-style: none;
 }
-  
+
+h4 {
+  display: inline;
+  float: left;
+}
+
+.camp-info {
+  padding: 10px;
+  font-size: 12px;
+}
+
+p {
+  border-bottom-style: solid;
+  border-width: thin;
+}
+
+.btn-site i:hover {
+  background-color: #06aed5;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-error {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.btn-next {
+  background-color: #ffff00;
+  color: #000;
+}
+
+.btn-prev {
+  background-color: #ffff00;
+  color: #000;
+}
+
+/* .btn {
+  border-radius: 15px;
+  background-color: #06aed5;
+  color: white;
+} */
+
 .btn i:hover {
   font-size: 20px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-  
+
 .btn-error {
   border-radius: 15px;
   background-color: red;
@@ -21,11 +64,50 @@ ul {
 
 .btn-next {
   border-radius: 15px;
-  background-color: yellow;
-  color: black;
+  /* background-color: yellow;
+  color: black; */
+  background-color: #1b5e20;
+  color: #fff;
+  margin-left: 5px;
+  padding: 7px 15px;
 }
+
 .btn-prev {
   border-radius: 15px;
-  background-color: yellow;
-  color: black;
+  /* background-color: yellow;
+  color: black; */
+  background-color: #1b5e20;
+  color: #fff;
+  padding: 7px 15px;
+}
+
+body {
+  background-color: #eee;
+}
+
+.map {
+  height: 480px;
+  width: 550px;
+}
+
+.card-custom {
+  width: 550px;
+  height: 480px;
+}
+
+#user-input-container {
+  margin-top: -6px;
+}
+
+#clear-search-btn {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+footer {
+  position: static;
+  bottom: 0;
+  width: 100%;
 }
