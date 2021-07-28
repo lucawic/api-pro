@@ -1,8 +1,40 @@
 var day = (moment().format("DDDDYYYY"));
 var dayInc = 0;
 var hour = moment().hours();
-var Sector = ["N","NNE","NNE","NE","NE","ENE","ENE","E","E","ESE","ESE","SE","SE","SSE","SSE","S","S","SSW","SSW","SW","SW","WSW","WSW","W","W","WNW","WNW","NW","NW","NNW","NNW","N"];
-
+var Sector = [
+  "N",
+  "NNE",
+  "NNE",
+  "NE",
+  "NE",
+  "ENE",
+  "ENE",
+  "E",
+  "E",
+  "ESE",
+  "ESE",
+  "SE",
+  "SE",
+  "SSE",
+  "SSE",
+  "S",
+  "S",
+  "SSW",
+  "SSW",
+  "SW",
+  "SW",
+  "WSW",
+  "WSW",
+  "W",
+  "W",
+  "WNW",
+  "WNW",
+  "NW",
+  "NW",
+  "NNW",
+  "NNW",
+  "N",
+];
 let loiArray = [];
 let currentLocation = {lat:"",lng:""};
 let npsApiKey = "71YJlvXLD5CwfW1xEAbx30SgczpxdaZPp5HVB1eL";
@@ -10,14 +42,21 @@ let openWeatherApiKey = "c6372f1324c78c2e38ccaa1ebef5b15c";
 let searchPage = 0;
 let searchLimit = 10;
 // Open Layerts appears keyless 
-// var el = document.querySelector('.tabs');
-// var instance = M.Tabs.init(el, {swipeable:true});
+
 
 
 function gatherCampsites(){
     var searchStr = (document.querySelector("#searchTerm").value).toUpperCase();
-    var apiUrl = "https://developer.nps.gov/api/v1/campgrounds?stateCode=" + searchStr + "&api_key=" + npsApiKey + "&start=" + searchPage + "&limit=" + searchLimit;
-    fetch(apiUrl)
+  var apiUrl =
+    "https://developer.nps.gov/api/v1/campgrounds?stateCode=" +
+    searchStr +
+    "&api_key=" +
+    npsApiKey +
+    "&start=" +
+    searchPage +
+    "&limit=" +
+    searchLimit;
+  fetch(apiUrl)
     .then(campSiteResponse => campSiteResponse.json())
     .then(campSiteResponse =>{
       console.log(campSiteResponse);
@@ -121,8 +160,12 @@ function specCampsites(){
     $('#swipe-3').html('');
     $('#swipe-4').html('');
     var txtHeight = document.getElementById("swipe-1");
-    var apiUrl = "https://developer.nps.gov/api/v1/campgrounds?id=" + searchStr + "&api_key=" + npsApiKey;
-    fetch(apiUrl)
+  var apiUrl =
+    "https://developer.nps.gov/api/v1/campgrounds?id=" +
+    searchStr +
+    "&api_key=" +
+    npsApiKey;
+  fetch(apiUrl)
     .then(campSiteResponse => campSiteResponse.json())
     .then(campSiteResponse =>{
       console.log(campSiteResponse)
