@@ -67,7 +67,8 @@ p {
   /* background-color: yellow;
   color: black; */
   background-color: #1b5e20;
-  color: #fff;
+  color: #ffffff;
+  margin-top: 10%;
   margin-left: 5px;
   padding: 7px 15px;
 }
@@ -78,6 +79,7 @@ p {
   color: black; */
   background-color: #1b5e20;
   color: #fff;
+  margin-top: 10%;
   padding: 7px 15px;
 }
 
