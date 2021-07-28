@@ -60,8 +60,8 @@ color: black;
 }
 
 .card-custom {
-min-height: 550px;
-min-width:550px;
+height: 550px;
+width:550px;
 }
 
 #user-input-container {
@@ -86,4 +86,8 @@ transform: translate(-50%, 0%);
 overflow: scroll;
 }
 
+.map{
+  width:550px;
+  height:550px;
+}
 

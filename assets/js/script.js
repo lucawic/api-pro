@@ -271,7 +271,7 @@ function updateMap(){
     ],
     view: new ol.View({
       center: ol.proj.fromLonLat([currentLocation.lng, currentLocation.lat]),
-      zoom: 15
+      zoom: 16
     })
   });
   }else{
