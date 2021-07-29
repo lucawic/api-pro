@@ -107,10 +107,10 @@ footer {
 }
 
 #favorite-btn {
-  position: relative;
-  bottom: 75px;
-  left: 50%;
-  transform: translate(-50%, 0%);
+position: relative;
+bottom: 55px;
+left: 50%;
+transform: translate(-50%, 0%);
 }
 
 [id^="swipe-"] {
