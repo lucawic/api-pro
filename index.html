@@ -165,14 +165,14 @@
       <!-- USER INPUT END -->
       <!-- Comment -->
       <!-- CAMPSITE INFO START -->
-      <div class="col l3 noPrint">
+      <div class="col l3">
         <div class="card" style="min-height: 550px">
           <div class="card-title center">Camp Info:</div>
           <ul id="tabs-swipe" class="tabs">
-            <li class="tab col s3 info-tab"><a style="color:black;" href="#swipe-1">1</a></li>
-            <li class="tab col s3 info-tab"><a style="color:black;" href="#swipe-2">2</a></li>
-            <li class="tab col s3 info-tab"><a style="color:black;" href="#swipe-3">3</a></li>
-            <li class="tab col s3 info-tab"><a style="color:black;" href="#swipe-4">4</a></li>
+            <li class="tab col s3 info-tab noPrint"><a style="color:black;" href="#swipe-1">1</a></li>
+            <li class="tab col s3 info-tab noPrint"><a style="color:black;" href="#swipe-2">2</a></li>
+            <li class="tab col s3 info-tab noPrint"><a style="color:black;" href="#swipe-3">3</a></li>
+            <li class="tab col s3 info-tab noPrint"><a style="color:black;" href="#swipe-4">4</a></li>
           </ul>
 
  
@@ -184,7 +184,7 @@
 
         </div>
         <!-- <div> -->
-        <a href="#" class="waves-effect waves-light btn-small" id="favorite-btn" 
+        <a href="#" class="waves-effect waves-light btn-small noPrint" id="favorite-btn" 
             >Add to Favorites</a
           >
         <!-- </div>  -->
@@ -205,6 +205,11 @@
           <div id="map" class="map"></div>
 
         </div>
+        <div id="print-btn" class="center">
+          <a href="#" class="waves-effect waves-light btn-small noPrint" onclick="window.print();"
+            >Print</a
+          >
+        </div>
       </div>
       <!-- MAP END -->
     </div>
@@ -215,7 +220,7 @@
       </div>
     </div>
     <!-- FOOTER START -->
-    <footer class="page-footer green darken-4 noPrint">
+    <footer class="page-footer green darken-4">
       <div class="center valign-wrapper">
         <div class="row">
           <div class="l12">
