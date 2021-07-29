@@ -322,12 +322,12 @@ function specCampsites(){
     if(localStorage.getItem("ID")){
       var campIDArray = JSON.parse(localStorage.getItem("ID"));
       if(campIDArray.indexOf(campSiteResponse.data[0].id) >= 0){
-        $('#favorite-btn').text("Remove from Favorites").click(removeFavorite())
+        $('#favorite-btn').text("Remove from Favorites").click(removeFavorite)
       }else{
-        $('#favorite-btn').text("Add to Favorites").click(addFavorite())
+        $('#favorite-btn').text("Add to Favorites").click(addFavorite)
       };
     }else{
-      $('#favorite-btn').text("Add to Favorites").click(addFavorite())
+      $('#favorite-btn').text("Add to Favorites").click(addFavorite)
     };  
   });
 };
@@ -380,20 +380,20 @@ function addFavorite(){
       campIDArray.push(campID);
       localStorage.setItem("ID", JSON.stringify(campIDArray));
     };
-    $('#favorite-btn').text("Remove from Favorites").click(removeFavorite)
+    // $('#favorite-btn').text("Remove from Favorites").click(removeFavorite());
 };
 
 function removeFavorite(){
   var campArray = JSON.parse(localStorage.getItem("Location"));
   var campIDArray = JSON.parse(localStorage.getItem("ID"));
+    if(campIDArray.indexOf(campSiteID) >= 0) {
+      campArray.splice(campIDArray.indexOf(campSiteID),1);
+      localStorage.setItem("Location", JSON.stringify(campArray));
 
-  if(campIDArray.indexOf(campSiteID) >= 0) {
-    campIDArray.splice(campIDArray.indexOf(campSiteID),1);
-    localStorage.setItem("ID", JSON.stringify(campIDArray));
-    campArray.splice(campIDArray.indexOf(campSiteID),1);
-    localStorage.setItem("Location", JSON.stringify(campArray));
-  };
-  $('#favorite-btn').text("Add to Favorites").click(addFavorite)
+      campIDArray.splice(campIDArray.indexOf(campSiteID),1);
+      localStorage.setItem("ID", JSON.stringify(campIDArray));
+    };
+  // $('#favorite-btn').text("Add to Favorites").click(addFavorite());
 };
 
 function populateModal(){
