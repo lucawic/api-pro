@@ -1,10 +1,12 @@
 var openModal = document.getElementById("open-modal");
 var closeModal = document.getElementById("close-modal");
 var modalContainer = document.getElementById("modal-container");
-var campID = [];
 var day = (moment().format("DDDDYYYY"));
 var dayInc = 0;
 var hour = moment().hours();
+var campSiteName = "";
+var campSiteID = "";
+var campID = [];
 var Sector = [
   "N",
   "NNE",
@@ -164,6 +166,7 @@ function clearSearchPage(){
 //Function for looking up specific campsite by it's id (associated with the buttons id)
 function specCampsites(){
     searchStr = this.id;
+    campSiteID = searchStr;
   //clear the info tabs JQuery
     modalContainer.classList.remove("show");
     // var infoEl = document.querySelectorAll(".camp-info");
@@ -186,6 +189,7 @@ function specCampsites(){
   .then(campSiteResponse => campSiteResponse.json())
   .then(campSiteResponse =>{
     // console.log(campSiteResponse)
+    campSiteName = campSiteResponse.data[0].name;
     campID = campSiteResponse.data[0].id;
     //populate all the tabs with data use JQuery
     if (campSiteResponse.data[0].name){
@@ -315,26 +319,29 @@ function specCampsites(){
         document.querySelector("#Day"+i+"-icon").src="";
       };
     }
+    if(localStorage.getItem("ID")){
+      var campIDArray = JSON.parse(localStorage.getItem("ID"));
+      if(campIDArray.indexOf(campSiteResponse.data[0].id) >= 0){
+        $('#favorite-btn').text("Remove from Favorites").click(removeFavorite())
+      }else{
+        $('#favorite-btn').text("Add to Favorites").click(addFavorite())
+      };
+    }else{
+      $('#favorite-btn').text("Add to Favorites").click(addFavorite())
+    };  
   });
 };
 
-$(document).ready(function() {
-  var campArray = JSON.parse(localStorage.getItem("Location")) || [];
-  var campIDArray = JSON.parse(localStorage.getItem("ID")) || [];
-  $("#favorite-btn").on("click", function(){ 
-    // if(localStorage.getItem("Location") == null) {
-    //   localStorage.setItem("Location", '[]');
-    // }
-    if(campArray.indexOf(campSiteName) == -1) {
-      campArray.push(campSiteName);
-      localStorage.setItem("Location", JSON.stringify(campArray));
-    };
-    if(campIDArray.indexOf(campID) == -1) {
-      campIDArray.push(campID);
-      localStorage.setItem("ID", JSON.stringify(campIDArray));
-    };
-  });
-});
+// $(document.createElement('button')).prop({
+//   type: 'button',
+//   innerHTML: "PREV PAGE",
+//   class: btnColor,
+//   id: "PREV-PAGE",
+//   style: "width: 210px"
+// })
+// $(document).ready(function() {
+//   $("#favorite-btn").on("click", addFavorite()); 
+// });
 //   $(document).ready(function() {
 //     $("#remove-btn").on("click", function() {
 //       localStorage.removeItem("Location", campSiteName);
@@ -361,6 +368,33 @@ closeModal.addEventListener("click",function(){
 //     modalContainer.classList.remove(".show");
 //   })
 // })
+
+function addFavorite(){
+  var campArray = JSON.parse(localStorage.getItem("Location")) || [];
+  var campIDArray = JSON.parse(localStorage.getItem("ID")) || [];
+    if(campArray.indexOf(campSiteName) == -1) {
+      campArray.push(campSiteName);
+      localStorage.setItem("Location", JSON.stringify(campArray));
+    };
+    if(campIDArray.indexOf(campID) == -1) {
+      campIDArray.push(campID);
+      localStorage.setItem("ID", JSON.stringify(campIDArray));
+    };
+    $('#favorite-btn').text("Remove from Favorites").click(removeFavorite)
+};
+
+function removeFavorite(){
+  var campArray = JSON.parse(localStorage.getItem("Location"));
+  var campIDArray = JSON.parse(localStorage.getItem("ID"));
+
+  if(campIDArray.indexOf(campSiteID) >= 0) {
+    campIDArray.splice(campIDArray.indexOf(campSiteID),1);
+    localStorage.setItem("ID", JSON.stringify(campIDArray));
+    campArray.splice(campIDArray.indexOf(campSiteID),1);
+    localStorage.setItem("Location", JSON.stringify(campArray));
+  };
+  $('#favorite-btn').text("Add to Favorites").click(addFavorite)
+};
 
 function populateModal(){
   var locationArray = JSON.parse(localStorage.getItem("Location"));
