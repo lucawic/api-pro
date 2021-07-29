@@ -30,6 +30,19 @@ bottom: 0;
 width: 100%;
 } 
 
+/* .container {
+  width:100%;
+} */
+.card-width{
+  width: 100%;
+  margin:auto;
+}
+
+.card-width {
+  display:flex;
+  flex-wrap: wrap;
+}
+
 #camp-list{
 padding-top:20px;
 float:none;
@@ -38,8 +51,8 @@ padding-left: 0px;
 }
 
 .camp-info{
-padding: 10px;
-font-size: 12px;
+  padding:10px;
+  font-size: 12px;
 }
 
 .btn-error {
@@ -118,9 +131,38 @@ overflow: scroll;
 .show {
   pointer-events: auto;
   opacity: 1;
+  z-index: 1;
 }
 
 .map{
   width:550px;
   height:550px;
+}
+
+@media screen and (max-width: 1565px){
+  .container{
+    width:auto;
+  }
+}
+
+@media screen and (max-width: 995px){
+  .map{
+    padding-bottom: 55px;
+  }
+}
+
+@media screen and (max-width: 865px){
+  #forcast-container{
+    font-size:10px;
+  }
+}
+
+@media screen and (max-width: 420px){
+  span{
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 575px){
+  
 }

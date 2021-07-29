@@ -298,8 +298,6 @@ function specCampsites(){
         document.querySelector("#Day"+i+"-icon").src="";
       };
     }
-
-
     });
 };
 
