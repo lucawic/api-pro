@@ -173,11 +173,6 @@ function specCampsites(){
     }
   //clear the info tabs JQuery
     modalContainer.classList.remove("show");
-    // var infoEl = document.querySelectorAll(".camp-info");
-    // while (infoEl.hasChildNodes){
-    //   infoEl.removeChild(infoEl.firstChild);
-    // };
-
     $('#swipe-1').html('');
     $('#swipe-2').html('');
     $('#swipe-3').html('');
