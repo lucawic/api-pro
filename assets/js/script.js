@@ -380,7 +380,7 @@ function addFavorite(){
       campIDArray.push(campID);
       localStorage.setItem("ID", JSON.stringify(campIDArray));
     };
-    // $('#favorite-btn').text("Remove from Favorites").click(removeFavorite());
+    $('#favorite-btn').text("Remove from Favorites").click(removeFavorite);
 };
 
 function removeFavorite(){
@@ -393,7 +393,7 @@ function removeFavorite(){
       campIDArray.splice(campIDArray.indexOf(campSiteID),1);
       localStorage.setItem("ID", JSON.stringify(campIDArray));
     };
-  // $('#favorite-btn').text("Add to Favorites").click(addFavorite());
+  $('#favorite-btn').text("Add to Favorites").click(addFavorite);
 };
 
 function populateModal(){
