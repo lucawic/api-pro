@@ -166,7 +166,11 @@ function clearSearchPage(){
 //Function for looking up specific campsite by it's id (associated with the buttons id)
 function specCampsites(){
     searchStr = this.id;
-    campSiteID = searchStr;
+    if(searchStr.includes("fav-")){
+      campSiteID = searchStr.slice(4);
+    }else{
+      campSiteID = searchStr;
+    }
   //clear the info tabs JQuery
     modalContainer.classList.remove("show");
     // var infoEl = document.querySelectorAll(".camp-info");
@@ -181,7 +185,7 @@ function specCampsites(){
   var txtHeight = document.getElementById("swipe-1");
   var apiUrl =
     "https://developer.nps.gov/api/v1/campgrounds?id=" +
-    searchStr +
+    campSiteID +
     "&api_key=" +
     npsApiKey;
   //Use of API, JSON
@@ -413,11 +417,11 @@ function populateModal(){
             innerHTML: campText,
             class: "waves-effect waves-light btn-small",
             style: "width: 210px",
-            id: arrayText,
+            id: "fav-" + arrayText,
         })
         )      
     );
-    var btn = document.getElementById(arrayText);
+    var btn = document.getElementById("fav-" + arrayText);
     btn.addEventListener("click", specCampsites);
   };
 }
