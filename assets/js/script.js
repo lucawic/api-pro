@@ -166,14 +166,13 @@ function clearSearchPage(){
 //Function for looking up specific campsite by it's id (associated with the buttons id)
 function specCampsites(){
     searchStr = this.id;
-    campSiteID = searchStr;
+    if(searchStr.includes("fav-")){
+      campSiteID = searchStr.slice(4);
+    }else{
+      campSiteID = searchStr;
+    }
   //clear the info tabs JQuery
     modalContainer.classList.remove("show");
-    // var infoEl = document.querySelectorAll(".camp-info");
-    // while (infoEl.hasChildNodes){
-    //   infoEl.removeChild(infoEl.firstChild);
-    // };
-
     $('#swipe-1').html('');
     $('#swipe-2').html('');
     $('#swipe-3').html('');
@@ -181,7 +180,7 @@ function specCampsites(){
   var txtHeight = document.getElementById("swipe-1");
   var apiUrl =
     "https://developer.nps.gov/api/v1/campgrounds?id=" +
-    searchStr +
+    campSiteID +
     "&api_key=" +
     npsApiKey;
   //Use of API, JSON
@@ -380,7 +379,7 @@ function addFavorite(){
       campIDArray.push(campID);
       localStorage.setItem("ID", JSON.stringify(campIDArray));
     };
-    // $('#favorite-btn').text("Remove from Favorites").click(removeFavorite());
+    $('#favorite-btn').text("Remove from Favorites").click(removeFavorite);
 };
 
 function removeFavorite(){
@@ -393,7 +392,7 @@ function removeFavorite(){
       campIDArray.splice(campIDArray.indexOf(campSiteID),1);
       localStorage.setItem("ID", JSON.stringify(campIDArray));
     };
-  // $('#favorite-btn').text("Add to Favorites").click(addFavorite());
+  $('#favorite-btn').text("Add to Favorites").click(addFavorite);
 };
 
 function populateModal(){
@@ -413,11 +412,11 @@ function populateModal(){
             innerHTML: campText,
             class: "waves-effect waves-light btn-small",
             style: "width: 210px",
-            id: arrayText,
+            id: "fav-" + arrayText,
         })
         )      
     );
-    var btn = document.getElementById(arrayText);
+    var btn = document.getElementById("fav-" + arrayText);
     btn.addEventListener("click", specCampsites);
   };
 }
