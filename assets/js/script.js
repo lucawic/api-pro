@@ -7,7 +7,9 @@ var hour = moment().hours();
 var campSiteName = "";
 var campSiteID = "";
 var campID = [];
-var validStates = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
+var validStates = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA",
+                  "MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN",
+                  "TX","UT","VT","VA","WA","WV","WI","WY"];
 var states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia",
               "Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts",
               "Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico",
@@ -182,10 +184,11 @@ function gatherCampsites(){
         var btn = document.getElementById("PREV-PAGE");
         btn.addEventListener("click", prevPage);
       };
-      //get a random image based on the "state of"
+
+      //API to pull in a background image
       var state = states[(validStates.indexOf(searchStr))];
       state.split(" ").join("%20");
-      var api3Url = "https://pixabay.com/api/?key="+pixabayApiKey+"&q=state%20of%20"+state+"&image_type=photo&orientation=horizontal&category=background&editors_choice=false&safesearch=true";
+      var api3Url = "https://pixabay.com/api/?key="+pixabayApiKey+"&q="+state+"&image_type=photo&orientation=horizontal&category=nature&editors_choice=false&safesearch=true&per_page=3";
       fetch(api3Url)
       .then(backgroundResponse => backgroundResponse.json())
       .then(backgroundResponse => {
@@ -194,7 +197,6 @@ function gatherCampsites(){
         var randomInt = Math.floor(Math.random()*backgroundResponse.hits.length);
         document.getElementById("body").style.backgroundImage="url("+ backgroundResponse.hits[randomInt].largeImageURL +")"; 
       });
-
     })
     //DOM manipulation    
     var btn = document.getElementById("searchTerm");
@@ -396,24 +398,6 @@ function specCampsites(){
   });
 };
 
-// $(document.createElement('button')).prop({
-//   type: 'button',
-//   innerHTML: "PREV PAGE",
-//   class: btnColor,
-//   id: "PREV-PAGE",
-//   style: "width: 210px"
-// })
-// $(document).ready(function() {
-//   $("#favorite-btn").on("click", addFavorite()); 
-// });
-//   $(document).ready(function() {
-//     $("#remove-btn").on("click", function() {
-//       localStorage.removeItem("Location", campSiteName);
-//     })
-//   });
-//   })
-// })
-
 openModal.addEventListener("click",function(){
   modalContainer.classList.add("show");
 });
@@ -421,17 +405,6 @@ openModal.addEventListener("click",function(){
 closeModal.addEventListener("click",function(){
   modalContainer.classList.remove("show");
 });
-// $(document).ready(function() {
-//   $("#open-modal").on("click", function(){
-//     modalContainer.classList.add(".show");
-//   })
-// })
-
-// $(document).ready(function() {
-//   $("#close-modal").on("click", function(){
-//     modalContainer.classList.remove(".show");
-//   })
-// })
 
 function addFavorite(){
   var campArray = JSON.parse(localStorage.getItem("Location")) || [];
