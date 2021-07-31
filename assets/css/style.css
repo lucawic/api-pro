@@ -135,16 +135,6 @@ footer {
   height: 100%;
 }
 
-/* @media screen and (max-width: 1565px) {
-  .container {
-    width: auto;
-  }
-} */
-
-@media screen and (max-width: 1024px) {
-  
-} 
-
 @media screen and (max-width: 995px) {
   .map {
     padding-bottom: 55px;
