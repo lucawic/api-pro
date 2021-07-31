@@ -7,6 +7,13 @@ var hour = moment().hours();
 var campSiteName = "";
 var campSiteID = "";
 var campID = [];
+var validStates = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
+var states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia",
+              "Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts",
+              "Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico",
+              "New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina",
+              "South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+
 var Sector = [
   "N",
   "NNE",
@@ -45,9 +52,34 @@ let loiArray = [];
 let currentLocation = {lat:"",lng:""};
 let npsApiKey = "71YJlvXLD5CwfW1xEAbx30SgczpxdaZPp5HVB1eL";
 let openWeatherApiKey = "c6372f1324c78c2e38ccaa1ebef5b15c";
+let pixabayApiKey = "22722015-2600ce20055da0a54f573e666";
 let searchPage = 0;
 let searchLimit = 10;
 // Open Layerts appears keyless 
+
+function validateInput(){
+  if(validStates.indexOf((document.querySelector("#searchTerm").value).toUpperCase()) >= 0) {
+    gatherCampsites();
+  }else{
+    var campsEl = document.getElementById("camp-list");
+    while (campsEl.hasChildNodes()) {  
+      campsEl.removeChild(campsEl.firstChild);
+    };   
+    btnColor = "btn-prev";
+    $('#camp-list').append(
+      $('<li>').append(  
+      $(document.createElement('button')).prop({
+          type: 'button',
+          innerHTML: "Please Enter a valid State Code",
+          class: btnColor,
+          id: "State-Fail",
+          style: "width: 210px"
+        })
+      )
+    )
+        
+  }  
+}
 
 
 //Pull all the campsites based on State NPS API. 
@@ -97,7 +129,25 @@ function gatherCampsites(){
         var btn = document.getElementById(campSiteResponse.data[i].id);
         btn.addEventListener("click", specCampsites);
       };
-      //Add a next or previous button if needed use JQuery
+      //Add a "no Camp", next or previous button if needed use JQuery
+      if (campSiteResponse.total == 0){
+        var campsEl = document.getElementById("camp-list");
+        while (campsEl.hasChildNodes()) {  
+          campsEl.removeChild(campsEl.firstChild);
+        };   
+        btnColor = "btn-next";
+        $('#camp-list').append(
+          $('<li>').append(  
+          $(document.createElement('button')).prop({
+              type: 'button',
+              innerHTML: "No Campsites Found",
+              class: btnColor,
+              id: "No-camp-error",
+              style: "width: 210px"
+            })
+          )
+        )
+      };
       if (campSiteResponse.total > (searchPage + searchLimit)){
         btnColor = "btn-next";
         $('#camp-list').append(
@@ -132,11 +182,25 @@ function gatherCampsites(){
         var btn = document.getElementById("PREV-PAGE");
         btn.addEventListener("click", prevPage);
       };
+      var state = states[(validStates.indexOf(searchStr))];
+      state.split(" ").join("%20");
+      var api3Url = "https://pixabay.com/api/?key="+pixabayApiKey+"&q="+state+"&image_type=photo&orientation=horizontal&category=nature&editors_choice=false&safesearch=true&per_page=3";
+
+      fetch(api3Url)
+      .then(backgroundResponse => backgroundResponse.json())
+      .then(backgroundResponse => {
+        console.log(backgroundResponse)
+        //set background
+        document.getElementById("body").style.backgroundImage="url("+ backgroundResponse.hits[0].largeImageURL +")"; 
+      });
+
     })
     //DOM manipulation    
     var btn = document.getElementById("searchTerm");
     btn.addEventListener("click", resetSearchPage);
 };
+
+
 
 function nextPage(){
   searchPage = searchPage + searchLimit;
