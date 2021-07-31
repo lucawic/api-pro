@@ -21,7 +21,9 @@ p {
 }
 
 body {
-  background-color: darkslategray;
+background-color: darkslategray;
+background-repeat: no-repeat;
+background-size:cover;
 }
 
 footer {
@@ -61,33 +63,13 @@ footer {
 }
 
 .btn-next {
-  border-radius: 15px;
-  /* background-color: yellow;
-  color: black; */
-  background-color: #1b5e20;
-  color: #ffffff;
-  margin-top: 10%;
-  margin-left: 5px;
-  padding: 7px 15px;
+background-color: yellow;
+color: black;
 }
 
 .btn-prev {
-  border-radius: 15px;
-  /* background-color: yellow;
-  color: black; */
-  background-color: #1b5e20;
-  color: #fff;
-  margin-top: 10%;
-  padding: 7px 15px;
-  /* border-radius: 15px; */
-  background-color: yellow;
-  color: black;
-}
-
-.btn-prev {
-  /* border-radius: 15px; */
-  background-color: yellow;
-  color: black;
+background-color: yellow;
+color: black;
 }
 
 .card-custom {
@@ -123,17 +105,6 @@ footer {
 [id^="swipe-"] {
   overflow: scroll;
 }
-
-/* #remove-btn {
-  position: relative;
-  bottom: 65px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  }
-        
-  [id^="swipe-"] {
-  overflow: scroll;
-} */
 
 .modal-container {
   position: fixed;
@@ -217,12 +188,11 @@ footer {
       display:none !important;
   }
   
-footer:before {
-  display: block;
-  content: "Thank you for printing our content, Team 3. Aaron Wiebe, David Whipple, Kevin Phan, Lucas Wick, Samantha Ybarra";
-  border: 1px solid #bbb;
-  font-style: italic;
-  text-align: center;
+  footer:before {
+    display: block;
+    content: "Thank you for printing our content, Team 3. Aaron Wiebe, David Whipple, Kevin Phan, Lucas Wick, Samantha Ybarra";
+    border: 1px solid #bbb;
+    font-style: italic;
+    text-align: center;
   }
-  
 }
