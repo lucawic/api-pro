@@ -22,6 +22,8 @@ border-width: thin;
 
 body {
 background-color: darkslategray;
+background-repeat: no-repeat;
+background-size:cover;
 }
 
 footer {
