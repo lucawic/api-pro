@@ -135,6 +135,25 @@ footer {
   height: 100%;
 }
 
+@media screen and (max-width: 1025px) {
+  .col.s12.m6.l3.noPrint {
+    width: 60vw;
+    /* float: left; */
+    margin: 0 auto;
+  }
+
+  .col.s12.m6.l3 {
+    width: 60vw;
+    /* float: right; */
+    margin: 0 auto;
+  }
+
+  .col.s12.m12.l6 {
+    width: 60vw;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (max-width: 995px) {
   .map {
     padding-bottom: 55px;
