@@ -182,16 +182,17 @@ function gatherCampsites(){
         var btn = document.getElementById("PREV-PAGE");
         btn.addEventListener("click", prevPage);
       };
+      //get a random image based on the "state of"
       var state = states[(validStates.indexOf(searchStr))];
       state.split(" ").join("%20");
-      var api3Url = "https://pixabay.com/api/?key="+pixabayApiKey+"&q="+state+"&image_type=photo&orientation=horizontal&category=nature&editors_choice=false&safesearch=true&per_page=3";
-
+      var api3Url = "https://pixabay.com/api/?key="+pixabayApiKey+"&q=state%20of%20"+state+"&image_type=photo&orientation=horizontal&category=background&editors_choice=false&safesearch=true";
       fetch(api3Url)
       .then(backgroundResponse => backgroundResponse.json())
       .then(backgroundResponse => {
-        console.log(backgroundResponse)
+        // console.log(backgroundResponse)
         //set background
-        document.getElementById("body").style.backgroundImage="url("+ backgroundResponse.hits[0].largeImageURL +")"; 
+        var randomInt = Math.floor(Math.random()*backgroundResponse.hits.length);
+        document.getElementById("body").style.backgroundImage="url("+ backgroundResponse.hits[randomInt].largeImageURL +")"; 
       });
 
     })
